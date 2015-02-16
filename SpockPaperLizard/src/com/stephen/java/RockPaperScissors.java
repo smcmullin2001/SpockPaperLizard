@@ -1,5 +1,6 @@
 package com.stephen.java;
 
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.*;
@@ -13,8 +14,6 @@ public class RockPaperScissors {
 	static RPSFrame rFrame;
 	static RPSPanel rPanel;
 	static OptionsPanel op;
-	static User user;
-	static Computer hal;
 	private RockPaperScissors rps;
 	Image[] images = new Image[3];
 	static Top top;
@@ -28,8 +27,6 @@ public class RockPaperScissors {
 		rPanel = new RPSPanel(rps);
 		op = new OptionsPanel(rps, rPanel);
 		rFrame = new RPSFrame(rPanel, op);
-		user = new User();
-		hal = new Computer();
 		gameOver = new GameOver(rps);
 
 	}
@@ -45,15 +42,20 @@ public class RockPaperScissors {
 //		gameOver = new GameOver();
 	}
 	public void endGame(){
+		rPanel.setLayout(new GridLayout(1,3));
+		rPanel.add(gameOver);
 		if(Integer.parseInt(RPSFrame.top.youScore.getText()) > Integer.parseInt(RPSFrame.top.halScore.getText())){
 			gameOver.winLose.setText("You Win!");
 		}else{
 			gameOver.winLose.setText("You Lose!");
 		}
-		rFrame.setContentPane(gameOver);
+//		rFrame.setContentPane(gameOver);
 
 	}
 	public void reset(){
+		
+		rPanel.remove(gameOver);
+		rPanel.setLayout(new GridLayout(1,2));
 		rFrame.setContentPane(rFrame.container);
 		bestOf = 0;
 		op.best3 = true;
@@ -68,6 +70,8 @@ public class RockPaperScissors {
 		rPanel.rp.setIcon(null);
 		rPanel.lp.setText("Are You ");
 		rPanel.rp.setText("Ready?");
+		
+		
 	}
 
 

@@ -33,7 +33,10 @@ public class OptionsPanel extends JPanel {
 	RPSPanel rPanel;
 	Random random;
 	int index;
-	Image[] images = new Image[3];
+	Image[] images = new Image[5];
+	int you;
+	int hal;
+	
 
 	public OptionsPanel(final RockPaperScissors rps, final RPSPanel rPanel){
 		
@@ -43,6 +46,8 @@ public class OptionsPanel extends JPanel {
 			images[0] = ImageIO.read(getClass().getResource("Rock.jpg"));
 			images[1] = ImageIO.read(getClass().getResource("Paper.jpg"));
 			images[2] = ImageIO.read(getClass().getResource("Scissors.jpg"));
+			images[3] = ImageIO.read(getClass().getResource("spock.jpg"));
+			images[4] = ImageIO.read(getClass().getResource("lizard.jpg"));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
@@ -67,13 +72,12 @@ public class OptionsPanel extends JPanel {
 					random = new Random();
 					index = random.nextInt(images.length);
 					calculateScore(0, index);
-
+//					you = Integer.parseInt(RPSFrame.top.youScore.getText());
+//					hal = Integer.parseInt(RPSFrame.top.halScore.getText());
 					rPanel.rp.setIcon(new ImageIcon(images[index]));
-					if(RockPaperScissors.bestOf < RockPaperScissors.maxBestOf){}
-					else{
+					if(Integer.parseInt(RPSFrame.top.youScore.getText()) > RockPaperScissors.maxBestOf/2 
+							|| Integer.parseInt(RPSFrame.top.halScore.getText()) > RockPaperScissors.maxBestOf/2 ){
 						rps.endGame();
-					}
-					if(index > 0) {
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -99,11 +103,9 @@ public class OptionsPanel extends JPanel {
 					calculateScore(1, index);
 
 					rPanel.rp.setIcon(new ImageIcon(images[index]));
-					if(RockPaperScissors.bestOf < RockPaperScissors.maxBestOf){}
-					else{
+					if(Integer.parseInt(RPSFrame.top.youScore.getText()) > RockPaperScissors.maxBestOf/2 
+							|| Integer.parseInt(RPSFrame.top.halScore.getText()) > RockPaperScissors.maxBestOf/2 ){
 						rps.endGame();
-					}
-					if(index > 0) {
 					}
 					} catch (IOException e1) {
 					e1.printStackTrace();
@@ -129,11 +131,9 @@ public class OptionsPanel extends JPanel {
 					calculateScore(2, index);
 
 					rPanel.rp.setIcon(new ImageIcon(images[index]));
-					if(RockPaperScissors.bestOf < RockPaperScissors.maxBestOf){}
-					else{
+					if(Integer.parseInt(RPSFrame.top.youScore.getText()) > RockPaperScissors.maxBestOf/2 
+							|| Integer.parseInt(RPSFrame.top.halScore.getText()) > RockPaperScissors.maxBestOf/2 ){
 						rps.endGame();
-					}
-					if(index > 0) {
 					}
 					} catch (IOException e1) {
 					e1.printStackTrace();
@@ -156,14 +156,12 @@ public class OptionsPanel extends JPanel {
 					rPanel.lp.setIcon(new ImageIcon(img));
 					random = new Random();
 					index = random.nextInt(images.length);
-					calculateScore(2, index);
+					calculateScore(3, index);
 
 					rPanel.rp.setIcon(new ImageIcon(images[index]));
-					if(RockPaperScissors.bestOf < RockPaperScissors.maxBestOf){}
-					else{
+					if(Integer.parseInt(RPSFrame.top.youScore.getText()) > RockPaperScissors.maxBestOf/2 
+							|| Integer.parseInt(RPSFrame.top.halScore.getText()) > RockPaperScissors.maxBestOf/2 ){
 						rps.endGame();
-					}
-					if(index > 0) {
 					}
 					} catch (IOException e1) {
 					e1.printStackTrace();
@@ -186,14 +184,12 @@ public class OptionsPanel extends JPanel {
 					rPanel.lp.setIcon(new ImageIcon(img));
 					random = new Random();
 					index = random.nextInt(images.length);
-					calculateScore(2, index);
+					calculateScore(4, index);
 
 					rPanel.rp.setIcon(new ImageIcon(images[index]));
-					if(RockPaperScissors.bestOf < RockPaperScissors.maxBestOf){}
-					else{
+					if(Integer.parseInt(RPSFrame.top.youScore.getText()) > RockPaperScissors.maxBestOf/2 
+							|| Integer.parseInt(RPSFrame.top.halScore.getText()) > RockPaperScissors.maxBestOf/2 ){
 						rps.endGame();
-					}
-					if(index > 0) {
 					}
 					} catch (IOException e1) {
 					e1.printStackTrace();
@@ -310,8 +306,9 @@ public class OptionsPanel extends JPanel {
 public void calculateScore(int youScore, int index){
 		
 		switch(youScore){
-		case 0:{
-			if(index == 0){}
+		case 0:{//rock
+			if(index == 0){
+			}
 			if(index == 1){
 				setHalScore();
 
@@ -319,9 +316,16 @@ public void calculateScore(int youScore, int index){
 			if(index == 2){
 				setYouScore();
 			}
+			if(index == 3){
+				setHalScore();
+
+			}
+			if(index == 4){
+				setYouScore();
+			}
 			break;
 		}
-		case 1:{
+		case 1:{//paper
 			if(index == 0){
 				setYouScore();
 			}
@@ -331,9 +335,16 @@ public void calculateScore(int youScore, int index){
 				setHalScore();
 
 			}
+			if(index == 3){
+				setYouScore();
+			}
+			if(index == 4){
+				setHalScore();
+
+			}
 			break;
 		}
-		case 2:{
+		case 2:{//scissors
 			if(index == 0){
 				setHalScore();
 			}
@@ -341,6 +352,53 @@ public void calculateScore(int youScore, int index){
 				setYouScore();
 			}
 			if(index == 2){
+				
+			}
+			if(index == 3){
+				setHalScore();
+
+			}
+			if(index == 4){
+				setYouScore();
+			}
+			break;
+		}
+		case 3:{//spock
+			if(index == 0){
+				setYouScore();
+			}
+			if(index == 1){
+				setHalScore();
+
+			}
+			if(index == 2){
+				setYouScore();
+			}
+			if(index == 3){
+				
+			}
+			if(index == 4){
+				setHalScore();
+
+			}
+			break;
+		}
+		case 4:{//lizard
+			if(index == 0){
+				setHalScore();
+			}
+			if(index == 1){
+				setYouScore();
+			}
+			if(index == 2){
+				setHalScore();
+
+			}
+			if(index == 3){
+				setYouScore();
+			}
+			if(index == 4){
+				
 			}
 			break;
 		}
@@ -348,9 +406,11 @@ public void calculateScore(int youScore, int index){
 	}
 public void setYouScore(){
 	RPSFrame.top.youScore.setText("" + (Integer.parseInt(RPSFrame.top.youScore.getText()) + 1));
+
 }
 public void setHalScore(){
 	RPSFrame.top.halScore.setText("" + (Integer.parseInt(RPSFrame.top.halScore.getText()) + 1));
+
 
 }
 

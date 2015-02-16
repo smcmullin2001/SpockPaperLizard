@@ -10,7 +10,7 @@ public class RPSFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	JPanel container;
+	JLabel container;
 	JPanel buttonPanel;
 	JPanel picPanel;
 	JPanel leftPanel;
@@ -22,7 +22,7 @@ public class RPSFrame extends JFrame {
 	
 	public RPSFrame(RPSPanel rPanel, OptionsPanel op) {
 		this.op = op;
-		container = new JPanel();
+		container = new JLabel();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 450);
 		setContentPane(container);
@@ -30,6 +30,7 @@ public class RPSFrame extends JFrame {
 		
 		container.setBackground(Color.BLACK);
 		container.setLayout(new BorderLayout());
+		container.setVisible(true);
 		setVisible(true);
 		
 //		buttonPanel = new JPanel();

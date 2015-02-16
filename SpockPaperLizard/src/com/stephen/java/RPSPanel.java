@@ -17,7 +17,7 @@ public class RPSPanel extends JPanel {
 		setOpaque(true);
 		this.rps = rps;
 		this.setBounds(0,400,100,500);
-		setBackground(Color.GRAY);
+		setBackground(Color.BLACK);
 		this.setLayout(new GridLayout(1,2));
 		
 		lp = new LeftPanel();
